@@ -1,8 +1,14 @@
 <template>
   <div id="table">
-    <label for=""><input type="radio" name="radio" value="全て" checked>全て</label>
-    <label for=""><input type="radio" name="radio" value="作業中">作業中</label>
-    <label for=""><input type="radio" name="radio" value="完了">完了</label>
+    <label>
+      <input type="radio" name="radio" value="全て" checked />全て
+    </label>
+    <label>
+      <input type="radio" name="radio" value="作業中" />作業中
+    </label>
+    <label>
+      <input type="radio" name="radio" value="完了" />完了
+    </label>
     <table>
       <thead>
         <tr>
@@ -19,13 +25,13 @@
             <button>{{todo.status}}</button>
           </td>
           <td>
-              <button>削除</button>
+            <button>削除</button>
           </td>
         </tr>
       </tbody>
     </table>
     <h2>新規タスクの追加</h2>
-    <input type="text" ref="comment" />
+    <input type="text" v-model="comment" />
     <input type="button" value="追加" v-on:click="addTask" />
   </div>
 </template>
@@ -36,23 +42,23 @@ export default {
     return {
       todos: [],
       id: 1,
+      comment: ''
     };
   },
   methods: {
     addTask() {
-      const comment = this.$refs.comment;
       this.todos.push({
         id: this.id++,
-        comment: comment.value,
+        comment: this.comment,
         status: '作業中',
       });
-      comment.value = ''
+      this.comment = '';
     },
   },
 };
 </script>
 <style>
-    table{
-        margin: 0 auto;
-    }
+table {
+  margin: 0 auto;
+}
 </style>
