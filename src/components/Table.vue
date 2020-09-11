@@ -1,13 +1,8 @@
 <template>
   <div id="table">
-    <label>
-      <input type="radio" name="radio" value="全て" checked />全て
-    </label>
-    <label>
-      <input type="radio" name="radio" value="作業中" />作業中
-    </label>
-    <label>
-      <input type="radio" name="radio" value="完了" />完了
+    <label v-for="radioValue in radio" v-bind:key="radioValue">
+      <input type="radio" name="radio" v-bind:value="radioValue" v-model="picked"/>
+      {{radioValue}}
     </label>
     <table>
       <thead>
@@ -42,7 +37,9 @@ export default {
     return {
       todos: [],
       id: 1,
-      comment: ''
+      comment: '',
+      radio: ['全て','作業中','完了'],
+      picked: '全て'
     };
   },
   methods: {
