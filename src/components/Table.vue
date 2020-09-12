@@ -1,8 +1,8 @@
 <template>
   <div id="table">
-    <label v-for="radioValue in radio" v-bind:key="radioValue">
-      <input type="radio" name="radio" v-bind:value="radioValue" v-model="picked"/>
-      {{radioValue}}
+    <label v-for="status in todoStatus" v-bind:key="status.id">
+      <input type="radio" name="radio" v-bind:value="status.value" v-model="picked" />
+      {{status.value}}
     </label>
     <table>
       <thead>
@@ -38,8 +38,12 @@ export default {
       todos: [],
       id: 1,
       comment: '',
-      radio: ['全て','作業中','完了'],
-      picked: '全て'
+      todoStatus: [
+        { id: 1, value: '全て' },
+        { id: 2, value: '作業中' },
+        { id: 3, value: '完了' },
+      ],
+      picked: '全て',
     };
   },
   methods: {
