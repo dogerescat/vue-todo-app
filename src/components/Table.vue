@@ -13,14 +13,14 @@
         </tr>
       </thead>
       <tbody id="todo-body">
-        <tr v-for="todo in todos" v-bind:key="todo.id">
+        <tr v-for="(todo, index) in todos" v-bind:key="todo.id">
           <td>{{todo.id}}</td>
           <td>{{todo.comment}}</td>
           <td>
             <button>{{todo.status}}</button>
           </td>
           <td>
-            <button>削除</button>
+            <button v-on:click="deleteTask(index)">削除</button>
           </td>
         </tr>
       </tbody>
@@ -54,6 +54,20 @@ export default {
         status: '作業中',
       });
       this.comment = '';
+    },
+    deleteTask(index) {
+      this.todos.splice(index, 1);
+      this.updateId();
+    },
+    updateId() {
+      if (this.todos.length === 0) {
+        this.id = 1;
+        return;
+      }
+      this.todos.forEach((todo, index) => {
+        todo.id = index + 1;
+        this.id = todo.id + 1;
+      });
     },
   },
 };
