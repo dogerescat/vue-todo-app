@@ -60,7 +60,7 @@ export default {
       this.updateId();
     },
     updateId() {
-      if (this.todos.length === 0) {
+      if (!this.todos.length) {
         this.id = 1;
         return;
       }
