@@ -17,7 +17,7 @@
           <td>{{todo.id}}</td>
           <td>{{todo.comment}}</td>
           <td>
-            <button>{{todo.status}}</button>
+            <button v-on:click="changeStatus(index)">{{todo.status}}</button>
           </td>
           <td>
             <button v-on:click="deleteTask(index)">削除</button>
@@ -69,6 +69,13 @@ export default {
         this.id = todo.id + 1;
       });
     },
+    changeStatus(index) {
+      if (this.todos[index].status === '作業中') {
+        this.todos[index].status = '完了'
+      } else {
+        this.todos[index].status = '作業中'
+      }
+    }
   },
 };
 </script>
