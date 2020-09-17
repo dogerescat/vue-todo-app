@@ -13,7 +13,7 @@
         </tr>
       </thead>
       <tbody id="todo-body">
-        <tr v-for="(todo, index) in todos" v-bind:key="todo.id">
+        <tr v-for="(todo, index) in radioTodos" v-bind:key="todo.id">
           <td>{{todo.id}}</td>
           <td>{{todo.comment}}</td>
           <td>
@@ -75,8 +75,19 @@ export default {
       } else {
         this.todos[index].status = '作業中'
       }
-    }
+    },  
   },
+  computed: {
+    radioTodos() {
+      if (this.picked === '全て'){
+        return this.todos
+      } else {
+        return this.todos.filter((todo) => {
+          return todo.status === this.picked
+        })
+      }
+    } 
+  }
 };
 </script>
 <style>
